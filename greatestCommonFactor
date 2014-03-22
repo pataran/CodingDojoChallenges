@@ -1,0 +1,15 @@
+//Finds Greatest Common factor between two numbers
+function gfc(num1,num2){
+	var total1 = 0
+	var total2 = 0;
+	for(i = 1, j = 1; i <= num1, j <= num2; i++, j++){
+		if(num1%i === 0 && num2%j === 0){
+			if(total1 < i && total2 < j && total2 <= total1){
+				total1 = j;
+				total2 = i;
+			}
+		}
+	}
+	return total1 + " this is the gfc";
+}
+gfc(36,54);
