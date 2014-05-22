@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='stylesheets/client.css' />
+  </head>
+ <script src="/socket.io/socket.io.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+
+	var user_name = prompt("type a user name");
+	var chat_room = prompt("Enter Room?");
+
+
+	io = io.connect();
+	io.emit('ready', {name: user_name, room: chat_room, time: new Date().toString()});
+	io.emit('get_chats',{name: user_name, room: chat_room, time: new Date().toString()});
+	io.emit('get_current_users',{name: user_name, room: chat_room, time: new Date().toString()});
+
+	//Listens for a new user entering room!
+	io.on("user_entered_room", function(data){
+		    console.log(data.users_info, "this is the users info");		     
+			$("#chatbox").append("<p>" + data.message + "</p>");
+	})
+
+	io.on("current_users",function(data){
+		console.log("CURRENT USERS HIT!",data.current_users);
+		for(var i = 0; i < data.current_users.length; i++){
+			$("ul").append("<li id=" + data.current_users[i].name + ">" + data.current_users[i].name + "</li>");
+		}
+	})
+
+	io.on('previous_chats',function(data){
+		console.log("prev chat being called!",data);
+		// console.log(data.previous_messages);
+		$("ul").html("");
+		for(var i = 0; i < data.previous_messages.length; i++){
+
+			$("#chatbox").append("<p>" + data.previous_messages[i].name + ": " + data.previous_messages[i].text + "</p>");
+			$("ul").append("<li>" + data.previous_messages[i].name + "</li>")
+		}
+	})
+
+
+	io.on('broadcast_chat', function(data){
+		console.log(data.chat_message, "text from server");
+		$("#chatbox").append("<p>" + data.chat_message.name + ": " + data.chat_message.text + "</p>");
+
+	})
+
+	io.on("leave", function(data){
+		console.log("this user disconnected",data.disconnected_user.name);
+		$("#chatbox").append("<p>" + data.message + "</p>");
+		var list = $("li");
+		console.log(list);
+		for(var i = 0; i < list.length; i++){
+			console.log(list[i].innerHTML);
+			if(list[i].innerHTML === data.disconnected_user.name){
+				document.getElementById(data.disconnected_user.name).remove();
+			}
+		}
+	})
+
+	$("#send_text").click(function(){
+		var message = $("#enter_text").val();
+		io.emit("send_chat",{text:message,name:user_name});
+	});	
+})
+
+</script>
+<body>
+<div id="wrapper">
+<div id ="chatbox_wrapper">
+<div id="chatbox"></div>
+<div id="users">
+		<ul>
+		</ul>
+	</div>
+</div>
+<div id="text_bar">
+	<textarea id="enter_text"></textarea>
+	<button id="send_text">Send</button>
+</div>
+	
+</div>
+</body>
+</html>

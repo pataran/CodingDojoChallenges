@@ -1,15 +1,15 @@
 //BubbleSort Algo
 function bubbleSort(list){
 	var comparisons = 0, swaps = 0;
-
-for(var x = 0; x < list.length -1; x++){
-	for(var i = 0, swapping; i < list.length - 1; i++){
+	var swapping;
+for(var i = 0; i < list.length -1; i++){
+	for(var j = 0; j < list.length - 1; j++){
 		comparisons++;
-		if(list[i] > list[i + 1]){
+		if(list[j] > list[j + 1]){
 			//swap
-			swapping = list[i + 1];
-			list[i + 1] = list[i]
-			list[i] = swapping;
+			swapping = list[j + 1];
+			list[j + 1] = list[j]
+			list[j] = swapping;
 			swaps++;
 		}
 	}
@@ -20,3 +20,4 @@ console.log("swaps: " + swaps);
 
 return list;
 }
+bubbleSort([10,4,5,2,7,1,3,6,9,8]);

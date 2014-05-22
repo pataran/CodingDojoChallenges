@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+        <h1><%= title %></h1>
+    <p>Welcome to <%= title %></p>
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <p>Welcome to <%= title %></p>
+    	<form action="/process" method="post">
+    		Name:<input type ="text" name="email" placeholder="Email">
+    		Email<input type="text" name="name" placeholder="Name">
+
+        <input type="submit" value="submit"/>
+    	</form>
+  </body>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+ <script src="/socket.io/socket.io.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script>
+    $(document).ready(function(){
+ io = io.connect();
+ io.emit('order_ice_cream', {type: 'chocolate', quantity: 5});
+ // Listen for the deliver_ice_cream event
+ io.on('deliver_ice_cream', function(stuff) {
+     console.log('Received ice cream! It came with the following stuff:', stuff);
+ });
+    })
+</script>
+</html>
