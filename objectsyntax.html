@@ -1,0 +1,70 @@
+<script>
+
+function Node(x){
+	this.parent = undefined;
+	this.child  = undefined;
+	this.value = x;
+}
+
+function CreateTrain(start_value){
+	this.lastNode = new Node(start_value);
+	console.log(this.lastNode);
+
+	this.addNode = function(node_value)
+	{
+		var new_node = new Node(node_value);
+		this.lastNode.child = new_node;
+		new_node.parent = this.lastNode;
+		this.lastNode = new_node;
+		console.log('created a new node', new_node);
+		return new_node;
+	}
+
+	this.insertNode = function(insertedValue, parentNode)
+	{
+		var currentNode = parentNode;
+		if(currentNode.child == undefined || null){
+			this.addNode(insertedValue);
+		}else{
+			var new_node = new Node(insertedValue);
+			new_node.parent = parentNode;
+			new_node.child = parentNode.child;
+			parentNode.child = new_node;
+			new_node.child.parent = new_node;
+		}
+	}
+
+	this.deleteEnd = function(){
+		//console.log(this.lastNode.parent, 'deleted node?');
+		this.lastNode = this.lastNode.parent;
+		this.lastNode.child= null;
+		//this.lastNode.parent.child = null;
+	}
+
+	this.display = function(){
+		var holdValue = "" + this.lastNode.value;
+		var node = this.lastNode;
+		// console.log('node', node);
+		while(node.parent !== undefined)
+		{	
+			console.log('current node value', node.value);
+			var node = node.parent;
+			holdValue += node.value;
+			console.log(holdValue);
+		}
+		return holdValue;
+		// console.log('current node value', node.value);
+	}
+}
+
+var master = new CreateTrain(1);
+node1 = master.addNode(2);
+node2 = master.addNode(3);
+master.insertNode(4, );
+alert(master.display());
+
+
+</script>
+
+
+

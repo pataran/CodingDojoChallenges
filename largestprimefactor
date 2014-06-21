@@ -1,0 +1,16 @@
+function largestPrimeFactor(num){
+	var largest_num = 0;
+		for(var i = 0; i <= num; i++){
+			if(num%i === 0 && i%k !== 0){
+				for(var k = 1; k <= 9; k++){
+					
+					}	
+					if(largest_num < i){
+						largest_num = i;
+						// console.log(largest_num);
+					}
+				}
+			}
+		return largest_num;
+	}
+	largestPrimeFactor(600851475143);

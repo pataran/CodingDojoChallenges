@@ -1,0 +1,12 @@
+function countLetters(){
+	var letter_obj = {one:3, two:3, three:5, four:4, five:4}
+	var sum;
+
+	for (var letter in letter_obj) {
+		for(var value in letter){
+			console.log(value);
+		}
+	}
+}
+countLetters();
+

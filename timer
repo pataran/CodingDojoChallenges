@@ -1,0 +1,214 @@
+
+
+
+var time = 0;
+
+var startInterval = setInterval(timer, 1000);
+function timer(){
+if(time < 20){
+	time += 1;	
+	console.log(time);
+	}
+	else{
+		var stopinterval = clearInterval(startInterval)
+	}
+}
+
+
+
+
+
+// function sort(array){
+
+// 	if (array.length == 0){
+// 			console.log(array + "the array length is now zero!");
+// 		return [];
+
+// 	}
+
+// var pivot = array[0];
+// var left = [];
+// var right = [];
+
+// console.log("The pivot is" + " " + pivot);
+
+// for(var i = 1; i < array.length; i++){
+// 	if(array[i] < pivot)
+// 	{
+// 		left.push(array[i]);
+// 		console.log(array[i] + " " + "is left")
+// 	}
+// 	else if(array[i] > pivot){
+// 		right.push(array[i]);
+// 		console.log(array[i] + " " + "is right")
+// 	}
+
+// 	console.log(left);
+// 	console.log(right);
+
+	
+// }
+
+
+var merge = sort(left).concat(pivot, sort(right));
+console.log(merge + " merged and sorted ");
+return merge;
+}
+sort([5,8,9,2,4,1,10]);
+
+
+function findMultiplies(){
+	sum = 0;
+	for(var i = 0; i < 1000; i++){
+		if(i%3 === 0 || i%5 === 0){
+			sum += i;
+			console.log(sum);
+			
+
+			
+		}
+	}
+}
+findMultiplies();
+
+
+function findEvenFibonacci(){
+	var array  = [];
+	var first;
+	var second;
+	var add;
+	for(var i = 0; i <100; i++){
+		if(i === 0){
+			first = 1;
+			second = 2;
+		}
+		add = first + second;
+		first = second;
+		second = add;
+
+		if(first%2 === 0 && second%2 === 0 && add%2 === 0){
+			// console.log(first + "first");
+			// console.log(second + "second");
+			// console.log(add);
+			array.push(add);
+		}	
+	}
+	return array;
+}
+findEvenFibonacci();
+
+// function findEvenFibonacci(){
+// 	var i;
+// 	var fib = [];
+// 	var fib[0] = 0;
+// 	var fib[1] = 1; 
+// 		for(i = 2; i <= 10; i++){
+// 			fib[i] = fib[i-2] + fib[i-1];
+// 			console.log(fib[i]);
+// 		}
+// 	}
+// 	findEvenFibonacci();
+
+
+
+function largestPrimeFactor(num){
+	var largest_num = 0;
+		for(var i = 0; i <= num ; i++){
+			if(num%i === 0 && i%k !== 0){
+				for(var k = 1; k <= 9; k++){
+					
+					}	
+					if(largest_num < i){
+						largest_num = i;
+						// console.log(largest_num);
+					}
+				}
+			}
+		return largest_num;
+	}
+	largestPrimeFactor(1000);
+600851475143
+
+	function divide(num1,num2){
+		var answer = num1/num2;
+		return answer;
+	}
+	divide(600851475143,716151937);
+
+	function palindromeProduct(){
+		var multiply;
+		var backwards;
+		var palindromes = [];
+		// var breakpoint  = arg1 * arg2/2;
+		var largestnum = 0;
+
+		for(var i = 100; i < 1000; i++){
+			for(var j = 100; j < 1000; j++){
+				multiply = (i * j).toString();
+				var split_Multi = multiply.split("");
+				var  reversed = split_Multi.reverse().join("");
+
+				if(multiply === reversed){
+					// console.log(multiply + " is palindrome");
+
+					palindromes.push(parseInt(multiply));
+				}	
+			}
+		}
+		// for(var k = 0; k < palindromes.length; k++){
+		// 	if(palindromes[k] >= largestnum ){
+		// 		largestnum = palindromes[k];
+				
+		// 	}
+			
+		// }
+		var sort_palindromes = sort(palindromes);
+		
+		return sort(palindromes);
+		// return largestnum;
+	}
+	palindromeProduct();
+
+function sort(array){
+
+	if (array.length == 0){
+		return [];
+	}
+	var pivot = array[0];
+	var left = [];
+	var right = [];
+	for(var i = 1; i < array.length; i++){
+		if(array[i] < pivot)
+		{
+			left.push(array[i]);		
+		}
+		else if(array[i] > pivot){
+			right.push(array[i]);		
+		}
+	}
+
+	var merge = sort(left).concat(pivot, sort(right));
+	return merge;
+}
+
+function smallestMultiple(){
+	var number = 0;
+	while(number < 5000){
+		searchmultiple(number);
+
+	}
+	console.log(number);
+}
+smallestMultiple();
+
+function searchmultiple(number){
+	for(var i = 1; i <= 10; i++){
+		if(!number%i === 0){
+			number++;
+			return number;		
+		}
+	}	
+}
+
+
+
